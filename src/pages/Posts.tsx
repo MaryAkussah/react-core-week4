@@ -1,6 +1,24 @@
+import { Link } from "react-router-dom";
+
+const posts = [
+  { id: 1, title: "First Post" },
+  { id: 2, title: "Second Post" },
+  { id: 3, title: "Third Post" },
+];
+
 function Posts() {
-    return (
-        <h2>Duhhh the Post Page</h2>
-    )
+  return (
+    <div>
+      <h2>Posts</h2>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
+
 export default Posts;
