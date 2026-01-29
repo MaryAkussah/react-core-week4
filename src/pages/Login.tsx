@@ -6,6 +6,12 @@ function Login() {
   function handleLogin() {
     navigate("/");
   }
+  function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  navigate("/posts");
+}
+
+
 
   return (
     <div>
