@@ -1,17 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { login } from "../auth/auth";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation() as { state?: { from?: string } };
+
+  const from = location.state?.from || "/";
 
   function handleLogin() {
-    navigate("/");
+    login();
+    navigate(from, { replace: true });
   }
-  function handleSubmit(e: React.FormEvent) {
-  e.preventDefault();
-  navigate("/posts");
-}
-
-
 
   return (
     <div>

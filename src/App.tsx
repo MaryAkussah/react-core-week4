@@ -4,7 +4,9 @@ import About from './pages/About';
 import Posts from './pages/Posts';
 import MainLayout from "./pages/MainLayout";
 import PostDetails from "./pages/PostDetails";
+import ProtectedRoute from "./auth/ProtectedRoute";
 import Login from "./pages/Login";
+
 import './App.css'
 
 function App() {
@@ -20,15 +22,19 @@ function App() {
     </nav>
 
     <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/posts' element={<Posts />} /> 
-            <Route path="/posts/:id" element={<PostDetails />} />
-            <Route path="login" element={<Login />} />
+  <Route path="/" element={<MainLayout />}>
+    <Route index element={<Home />} />
+    <Route path="about" element={<About />} />
+    <Route path="login" element={<Login />} />
 
-          </Route>
-    </Routes>
+    {/* Protected block */}
+    <Route element={<ProtectedRoute />}>
+      <Route path="posts" element={<Posts />} />
+      <Route path="posts/:id" element={<PostDetails />} />
+    </Route>
+  </Route>
+</Routes>
+
    </div>
   )
 }
